@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Product.GetAllProducts
+namespace Application.Products.GetAllProducts
 {
     public class GetAllProducts : IGetAllProducts
     {
