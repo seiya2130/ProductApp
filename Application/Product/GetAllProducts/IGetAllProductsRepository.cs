@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Application.Product.GetAllProducts
+{
+    public interface IGetAllProductsRepository
+    {
+        List<Domain.Product.Product> GetAllProducts();
+    }
+}
