@@ -12,19 +12,18 @@ namespace ProductsApp.Controllers
     public class ProductsController : ApiController
     {
         private readonly IGetAllProducts getAllProducts;
-        private readonly GetAllProductsPresenter getAllProductsPresenter = new GetAllProductsPresenter();
+        private readonly GetAllProductsPresenter getAllProductsPresenter;
 
-        public ProductsController(IGetAllProducts getAllProducts, GetAllProductsPresenter getAllProductsPresenter)
+        public ProductsController(IGetAllProducts getAllProducts)
         {
             this.getAllProducts = getAllProducts;
-            this.getAllProductsPresenter = getAllProductsPresenter;
+            this.getAllProductsPresenter = new GetAllProductsPresenter();
         }
 
         public List<GetAllProductsViewModel> GetAllProducts()
         {
-            var a = this.getAllProducts.Handle();
-            var b = this.getAllProductsPresenter.Complete(a);
-            return b;
+            var getAllProductsOutputDataList = this.getAllProducts.Handle();
+            return this.getAllProductsPresenter.Complete(getAllProductsOutputDataList);
         }
 
         public IHttpActionResult GetProduct(int id)
