@@ -16,13 +16,7 @@ namespace Application.Products.GetAllProducts
 
         public List<GetAllProductsOutputData> Handle()
         {
-            var products = getAllProductsRepository.GetAllProducts();
-
-            var outputDataList = products.Select(x =>
-                new GetAllProductsOutputData() { Name = x.Name, Price = x.Price}
-            ).ToList();
-
-            return outputDataList;
+            return this.getAllProductsRepository.GetAllProducts().Select(x => new GetAllProductsOutputData(x.Name, x.Price)).ToList();
         }
     }
 }

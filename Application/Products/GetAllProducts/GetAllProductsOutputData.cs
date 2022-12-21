@@ -8,5 +8,11 @@ namespace Application.Products.GetAllProducts
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
+
+        public GetAllProductsOutputData(string name, decimal price)
+        {
+            Name = name;
+            Price = price;
+        }
     }
 }
