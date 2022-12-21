@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Application.Products.GetAllProducts;
+using InMemoryInfrastructure.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Unity;
+using Unity.Lifetime;
 
 namespace ProductApp
 {
@@ -9,8 +13,12 @@ namespace ProductApp
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API の設定およびサービス
+            var container = new UnityContainer();
+            container.RegisterType<IGetAllProductsRepository, GetAllProductsRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IGetAllProducts, GetAllProducts>(new HierarchicalLifetimeManager());
 
+            config.DependencyResolver = new UnityResolver(container);
+            // Web API の設定およびサービス
             // Web API ルート
             config.MapHttpAttributeRoutes();
 
