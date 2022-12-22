@@ -16,7 +16,19 @@ namespace Application.Products.GetProduct
         public GetProductOutputData Handle(GetProductInputData getProductInputData)
         {
             var product = this.getProductRepository.GetProduct(getProductInputData.Id);
-            return new GetProductOutputData(product.Name, product.Price);
+
+            GetProductOutputData getProductOutputData;
+
+            if (product.Name == null)
+            {
+                getProductOutputData = new GetProductOutputData(string.Empty, 0);
+            }
+            else
+            {
+                getProductOutputData = new GetProductOutputData(product.Name, product.Price);
+            }
+
+            return getProductOutputData;
         }
     }
 }
