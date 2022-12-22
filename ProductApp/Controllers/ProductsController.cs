@@ -2,7 +2,6 @@
 using Application.Products.GetProduct;
 using InMemoryInfrastructure.Products;
 using ProductApp.Controllers.GetProduct;
-using ProductApp.Models;
 using ProductsApp.Controllers.GetAllProducts;
 using System;
 using System.Collections.Generic;
