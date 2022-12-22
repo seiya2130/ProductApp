@@ -1,4 +1,5 @@
 ﻿using Application.Products.GetAllProducts;
+using Application.Products.GetProduct;
 using ProductApp.Models;
 using ProductsApp.Controllers.GetAllProducts;
 using System;
@@ -26,7 +27,7 @@ namespace ProductsApp.Controllers
             return this.getAllProductsPresenter.Complete(getAllProductsOutputDataList);
         }
 
-        public IHttpActionResult GetProduct(int id)
+        public GetAllProductsViewModel GetProduct(int id)
         {
             //var product = products.FirstOrDefault((p) => p.Id == id);
             //if (product == null)
