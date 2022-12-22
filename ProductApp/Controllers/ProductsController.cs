@@ -1,4 +1,7 @@
 ﻿using Application.Products.GetAllProducts;
+using Application.Products.GetProduct;
+using InMemoryInfrastructure.Products;
+using ProductApp.Controllers.GetProduct;
 using ProductApp.Models;
 using ProductsApp.Controllers.GetAllProducts;
 using System;
@@ -14,10 +17,16 @@ namespace ProductsApp.Controllers
         private readonly IGetAllProducts getAllProducts;
         private readonly GetAllProductsPresenter getAllProductsPresenter;
 
-        public ProductsController(IGetAllProducts getAllProducts)
+        private readonly IGetProduct getProduct;
+        private readonly GetProductPresenter getProductPresenter;
+
+        public ProductsController(IGetAllProducts getAllProducts, IGetProduct getProduct)
         {
             this.getAllProducts = getAllProducts;
             this.getAllProductsPresenter = new GetAllProductsPresenter();
+
+            this.getProduct = getProduct;
+            this.getProductPresenter = new GetProductPresenter();
         }
 
         public List<GetAllProductsViewModel> GetAllProducts()
@@ -26,14 +35,10 @@ namespace ProductsApp.Controllers
             return this.getAllProductsPresenter.Complete(getAllProductsOutputDataList);
         }
 
-        public IHttpActionResult GetProduct(int id)
+        public GetProductViewModel GetProduct(int id)
         {
-            //var product = products.FirstOrDefault((p) => p.Id == id);
-            //if (product == null)
-            //{
-            //    return NotFound();
-            //}
-            return Ok();
+            var getProductOutputData = this.getProduct.Handle(new GetProductInputData(id));
+            return this.getProductPresenter.Complete(getProductOutputData);
         }
     }
 }

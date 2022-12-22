@@ -1,4 +1,5 @@
 ﻿using Application.Products.GetAllProducts;
+using Application.Products.GetProduct;
 using InMemoryInfrastructure.Products;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace ProductApp
             var container = new UnityContainer();
             container.RegisterType<IGetAllProductsRepository, GetAllProductsRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IGetAllProducts, GetAllProducts>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<IGetProductRepository, GetProductRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IGetProduct, GetProduct>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
             // Web API の設定およびサービス

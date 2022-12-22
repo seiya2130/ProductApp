@@ -109,6 +109,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GetAllProducts\GetAllProductsViewModel.cs" />
     <Compile Include="Controllers\GetAllProducts\GetAllProductsPresenter.cs" />
+    <Compile Include="Controllers\GetProduct\GetProductPresenter.cs" />
+    <Compile Include="Controllers\GetProduct\GetProductViewModel.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
